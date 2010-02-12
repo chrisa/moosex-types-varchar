@@ -1,5 +1,5 @@
 Changes
-lib/MooseX/Meta/TypeConstraint/Varchar.pm
+lib/MooseX/Types/Varchar.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml

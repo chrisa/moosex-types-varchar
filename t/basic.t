@@ -1,13 +1,12 @@
 use strict;
 use warnings;
-use Test::More tests => 2;
-
-BEGIN { use_ok 'MooseX::Meta::TypeConstraint::Varchar' };
+use Test::More tests => 1;
 
 package MyClass;
 use Moose;
+use MooseX::Types::Varchar qw/ Varchar /;
 
-has 'attr1' => (is => 'rw', required => 1, isa => 'Varchar[20]');
+has 'attr1' => (is => 'rw', required => 1, isa => Varchar[20]);
 
 package main;
 

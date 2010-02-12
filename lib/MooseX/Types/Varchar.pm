@@ -1,6 +1,8 @@
-package MooseX::Meta::TypeConstraint::Varchar;
+package MooseX::Types::Varchar;
 use strict;
 use warnings;
+use MooseX::Types -declare => ['Varchar'];
+
 use Moose::Util::TypeConstraints qw/ register_type_constraint
 				     find_type_constraint /;
 
@@ -17,30 +19,27 @@ sub parameterize {
             type_parameter => $contained_tc,
 	    message        => sub {
 		    my $value = shift;
-		    return "'$value' is too long for attribute type $tc_name"
+		    return "'$value' is too long for attribute type Varchar[$length]"
 	    },
         );
 	return $parameterized;
 }
 
-register_type_constraint(
-	MooseX::Meta::TypeConstraint::Varchar->new(
-		name                 => 'Varchar',
-		package_defined_in   => __PACKAGE__,
-		parent               => find_type_constraint('Str'),
-		constraint           => sub {1},
-		constraint_generator => sub {
-			my $length = shift;
-			return sub {
-				return 1 if defined $_ && length $_ <= $length;
-				return;
-			}
-		},
-	)
+my $tc = MooseX::Types::Varchar->new(
+	name                 => Varchar,
+	package_defined_in   => __PACKAGE__,
+	parent               => find_type_constraint('Str'),
+	constraint           => sub {1},
+	constraint_generator => sub {
+		my $length = shift;
+		return sub {
+			return 1 if defined $_ && length $_ <= $length;
+			return;
+		}
+	},
 );
 
-Moose::Util::TypeConstraints::add_parameterizable_type(
-	find_type_constraint('Varchar')
-);
+register_type_constraint($tc);
+Moose::Util::TypeConstraints::add_parameterizable_type($tc);
 
 1;
