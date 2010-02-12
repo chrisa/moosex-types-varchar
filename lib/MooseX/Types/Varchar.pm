@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use MooseX::Types -declare => ['Varchar'];
 
+use Moose::Meta::TypeConstraint::Parameterized;
 use Moose::Util::TypeConstraints qw/ register_type_constraint
 				     find_type_constraint /;
 
