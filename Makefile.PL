@@ -1,18 +1,11 @@
-use strict;
-use warnings;
+use inc::Module::Install;
 
-use ExtUtils::MakeMaker;
+name 'MooseX-Types-Varchar';
+all_from 'lib/MooseX/Types/Varchar.pm';
 
-WriteMakefile(
-	DISTNAME  => 'MooseX-Types-Varchar',
-	NAME      => 'MooseX::Types::Varchar',
-	AUTHOR    => 'Chris\ Andrews\ \<chris\@nodnol\.org\>',
-	ABSTRACT  => 'A Str type parameterised by length',
-	VERSION   => '0.01',
-	EXE_FILES => [ qw() ],
-	(eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'perl') : ()),
-	PREREQ_PM    => {
-		"Moose" => '0',
-		"MooseX::Types" => '0',
-	},
-);
+test_requires 'Test::NoTabs';
+requires 'Moose';
+requires 'MooseX::Types';
+
+auto_install;
+WriteAll;
