@@ -1,0 +1,10 @@
+--- 
+abstract: A Str constraint parameterised by length
+author: 
+  - Chris Andrews <chris@nodnol.org>
+generated_by: me
+license: perl
+name: MooseX-Meta-TypeConstraint-Varchar
+requires: 
+  Moose: 0
+version: 0.01
