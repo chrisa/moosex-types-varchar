@@ -44,3 +44,49 @@ register_type_constraint($tc);
 Moose::Util::TypeConstraints::add_parameterizable_type($tc);
 
 1;
+
+__END__
+
+=head1 NAME
+
+MooseX::Types::Varchar - Str type parameterizable by length.
+
+=head1 SYNOPSIS
+
+  package MyClass;
+  use Moose;
+  use MooseX::Types::Varchar qw/ Varchar /;
+
+  has 'attr1' => (is => 'rw', isa => Varchar[40]);
+
+  package main;
+  my $obj = MyClass->new( attr1 => 'this must be under 40 chars' );
+
+=head1 DESCRIPTION
+
+This module provides a type based on Str, where a length restriction
+is paramterizable. You get a customised message indicating that there
+is a length restriction on the attribute:
+
+  '... long string ...' is too long for attribute type Varchar[20]
+
+=head1 EXPORTS
+
+Nothing by default. You will want to request "Varchar", provided as a
+MooseX::Types type.
+
+=head1 BUGS
+
+You can't really usefully subtype these. If you do the constraint will be
+applied to the subtype, but the message will not. 
+
+=head1 AUTHOR
+
+Chris Andrews <chris@nodnol.org>
+
+=head1 COPYRIGHT
+
+This program is Free software, you may redistribute it under the same
+terms as Perl itself.
+
+=cut

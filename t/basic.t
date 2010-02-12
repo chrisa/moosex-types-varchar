@@ -18,6 +18,6 @@ like($@, qr/'This is over twenty characters long\.' is too long for attribute ty
 eval {
 	my $obj = MyClass->new( attr1 => 'This isn\'t.' );
 };
-ok(!$@);
+ok(!$@, 'short-enough string');
 
 
