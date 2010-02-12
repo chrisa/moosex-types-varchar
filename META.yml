@@ -7,4 +7,5 @@ license: perl
 name: MooseX-Types-Varchar
 requires: 
   Moose: 0
+  MooseX::Types: 0
 version: 0.01

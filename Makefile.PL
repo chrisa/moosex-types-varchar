@@ -13,5 +13,6 @@ WriteMakefile(
 	(eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'perl') : ()),
 	PREREQ_PM    => {
 		"Moose" => '0',
+		"MooseX::Types" => '0',
 	},
 );
