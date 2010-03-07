@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 2;
+use Test::More tests => 3;
 
 package MyClass;
 use Moose;
@@ -19,5 +19,10 @@ eval {
         my $obj = MyClass->new( attr1 => 'This isn\'t.' );
 };
 ok(!$@, 'short-enough string');
+
+eval {
+        my $obj = MyClass->new( attr1 => '' );
+};
+ok(!$@, 'empty string');
 
 
