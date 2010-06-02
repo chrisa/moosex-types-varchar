@@ -5,6 +5,7 @@ name 'MooseX-Types-Varchar';
 all_from 'lib/MooseX/Types/Varchar.pm';
 
 test_requires 'Test::More' => '0.88';
+test_requires 'Test::Exception';
 author_requires 'Test::NoTabs';
 author_requires 'Test::EOL' => '0.7';
 requires 'Moose';

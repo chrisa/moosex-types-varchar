@@ -1,28 +1,32 @@
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More;
+{
+    package MyClass;
+    use Moose;
+    use MooseX::Types::Varchar qw/ Varchar /;
 
-package MyClass;
-use Moose;
-use MooseX::Types::Varchar qw/ Varchar /;
-
-has 'attr1' => (is => 'rw', required => 1, isa => Varchar[20]);
-
-package main;
+    has 'attr1' => (is => 'rw', required => 1, isa => Varchar[20]);
+    no Moose;
+}
 
 eval {
         my $obj = MyClass->new( attr1 => 'This is over twenty characters long.' );
 };
-like($@, qr/'This is over twenty characters long\.' is too long for attribute type Varchar\[20\]/, 'check Varchar[20] is respected');
+ok $@, 'Got exception';
+like($@, qr/Validation failed for/);
+like( $@, qr/This is over twenty characters long/,
+    'check Varchar[20] is respected');
 
 eval {
-        my $obj = MyClass->new( attr1 => 'This isn\'t.' );
+        my $obj = MyClass->new( attr1 => q{This isn't.} );
 };
-ok(!$@, 'short-enough string');
+ok(!$@, 'short-enough string')
+    or diag $@;
 
 eval {
         my $obj = MyClass->new( attr1 => '' );
 };
 ok(!$@, 'empty string');
 
-
+done_testing;

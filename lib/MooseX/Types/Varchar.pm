@@ -8,39 +8,33 @@ our $VERSION = '0.01';
 use MooseX::Types -declare => ['Varchar'];
 
 use Moose::Meta::TypeConstraint::Parameterized;
-use Moose::Util::TypeConstraints qw/ register_type_constraint
-                                     find_type_constraint /;
+use Moose::Util::TypeConstraints;
+use MooseX::Types::Moose qw/ Str Int /;
+use namespace::clean;
 
 use base qw/ Moose::Meta::TypeConstraint::Parameterizable /;
 
-sub parameterize {
-        my ($self, $length) = @_;
-        my $contained_tc = $self->_parse_type_parameter($length);
+sub _parse_type_parameter {
+    my ($self, $type_parameter) = @_;
+    Moose->throw_error(qq{Type parameter '$type_parameter' for Varchar is not an Int})
+        unless is_Int($type_parameter);
 
-        my $tc_name = $self->name . '[' . $length . ']';
-        my $parameterized = Moose::Meta::TypeConstraint::Parameterized->new(
-            name           => $tc_name,
-            parent         => $self,
-            type_parameter => $contained_tc,
-            message        => sub {
-                    my $value = shift;
-                    return "'$value' is too long for attribute type Varchar[$length]"
-            },
-        );
-        return $parameterized;
+    return type $type_parameter, # Evil, this shits a type called '20' which checks $_ < 20 into the global
+                                 # type constraint registry.
+        where { length($_) <= $type_parameter};
 }
 
-my $tc = MooseX::Types::Varchar->new(
+my $tc = __PACKAGE__->new(
         name                 => Varchar,
         package_defined_in   => __PACKAGE__,
-        parent               => find_type_constraint('Str'),
+        parent               => find_type_constraint( Str ),
         constraint           => sub {1},
         constraint_generator => sub {
-                my $length = shift;
+                my $type_parameter = shift;
+                my $check          = $type_parameter->_compiled_type_constraint;
                 return sub {
-                        return 1 if defined $_ && length $_ <= $length;
-                        return;
-                }
+                        return $check->($_);
+                };
         },
 );
 
