@@ -1,2 +1,2 @@
-use Test::NoTabs tests => 4;
+use Test::NoTabs;
 all_perl_files_ok('lib', 't');
