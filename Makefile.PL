@@ -1,11 +1,17 @@
 use inc::Module::Install;
+require Module::Install::AuthorTests;
 
 name 'MooseX-Types-Varchar';
 all_from 'lib/MooseX/Types/Varchar.pm';
 
-test_requires 'Test::NoTabs';
+test_requires 'Test::More' => '0.88';
+author_requires 'Test::NoTabs';
+author_requires 'Test::EOL' => '0.7';
 requires 'Moose';
 requires 'MooseX::Types';
 
-auto_install;
+author_tests 't/author';
+
+resources repository => 'git://github.com/chrisa/moosex-types-varchar.git';
+
 WriteAll;

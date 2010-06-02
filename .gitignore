@@ -1,6 +1,8 @@
 .#*
 *#
 *~
+MANIFEST
+META.yml
 Makefile
 Makefile.old
 pm_to_blib

@@ -82,7 +82,7 @@ MooseX::Types type.
 =head1 BUGS
 
 You can't really usefully subtype these. If you do the constraint will be
-applied to the subtype, but the message will not. 
+applied to the subtype, but the message will not.
 
 =head1 AUTHOR
 
@@ -94,3 +94,4 @@ This program is Free software, you may redistribute it under the same
 terms as Perl itself.
 
 =cut
+
