@@ -1,2 +1,8 @@
+0.02   Sat 5 Jun 2010 12:21:32 BST
+  * Update for Moose 1.06's changes to overloading of type constraint objects
+  * Remove non-standard error message.
+  * Create appropriate author tests, and other cleanups.
+  (all t0m)
+
 0.01   Fri 12 Feb 2010 19:02:38 GMT
   * Initial release.
