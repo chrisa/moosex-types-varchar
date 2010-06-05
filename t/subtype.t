@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More;
 
 package MyClass;
 use Moose;
@@ -18,14 +18,9 @@ eval {
 };
 ok($@);
 
-TODO: {
-        local $TODO = "message isn't propagated to subtypes";
-        like($@, qr/'This is over twenty characters long\.' is too long for attribute type ThisType/, 'check subtyped Varchar is respected');
-}
-
 eval {
         my $obj = MyClass->new( attr1 => 'This isn\'t.' );
 };
 ok(!$@, 'short-enough string');
 
-
+done_testing;
