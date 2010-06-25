@@ -1,3 +1,6 @@
+0.03   Fri 25 Jun 2010 17:36:52 BST
+  * Note that you don't want this, you probably want MooseX::Types::Parameterizable.
+
 0.02   Sat 5 Jun 2010 12:21:32 BST
   * Update for Moose 1.06's changes to overloading of type constraint objects
   * Remove non-standard error message.

@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use 5.008;
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use MooseX::Types -declare => ['Varchar'];
 
@@ -48,6 +48,11 @@ __END__
 =head1 NAME
 
 MooseX::Types::Varchar - Str type parameterizable by length.
+
+=head1 SEE INSTEAD
+
+You probably don't want this - L<MooseX::Types::Parameterizable> is
+the more general solution.
 
 =head1 SYNOPSIS
 
