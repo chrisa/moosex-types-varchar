@@ -19,7 +19,7 @@ sub _parse_type_parameter {
     Moose->throw_error(qq{Type parameter '$type_parameter' for Varchar is not an Int})
         unless is_Int($type_parameter);
 
-    return type $type_parameter, # Evil, this shits a type called '20' which checks $_ < 20 into the global
+    return type 'Varchar' . $type_parameter, # Evil, this shits a type called 'Varchar20' which checks $_ < 20 into the global
                                  # type constraint registry.
         where { length($_) <= $type_parameter};
 }
