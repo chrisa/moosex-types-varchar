@@ -10,6 +10,7 @@ author_requires 'Test::NoTabs';
 author_requires 'Test::EOL' => '0.7';
 requires 'Moose';
 requires 'MooseX::Types';
+requires 'MooseX::Types::Parmeterizable' => '0.07';
 
 author_tests 't/author';
 

@@ -17,6 +17,8 @@ ok $@, 'Got exception';
 like($@, qr/Validation failed for/);
 like( $@, qr/This is over twenty characters long/,
     'check Varchar[20] is respected');
+like( $@, qr/MooseX::Types::Varchar\[20\]/,
+    'type parameter passed to message');
 
 eval {
         my $obj = MyClass->new( attr1 => q{This isn't.} );
