@@ -6,7 +6,7 @@ use 5.008;
 our $VERSION = '0.03';
 
 use MooseX::Types::Parameterizable qw(Parameterizable);
-use MooseX::Types -declare => ['Varchar'];
+use MooseX::Types -declare => [qw( Varchar TrimableVarchar )];
 use MooseX::Types::Moose qw/ Str Int /;
 use namespace::clean;
 
@@ -21,6 +21,12 @@ subtype Varchar,
         qq{Validation failed for 'MooseX::Types::Varchar[$constraining]' with value "$val"};
       };
 
+subtype TrimableVarchar, as Varchar, where { 1 };
+coerce TrimableVarchar, from Str, via {
+    my ($val, $len) = @_;
+    substr($val, 0, $len);
+};
+
 1;
 
 __END__
@@ -33,12 +39,16 @@ MooseX::Types::Varchar - Str type parameterizable by length.
 
   package MyClass;
   use Moose;
-  use MooseX::Types::Varchar qw/ Varchar /;
+  use MooseX::Types::Varchar qw/ Varchar TrimableVarchar /;
 
   has 'attr1' => (is => 'rw', isa => Varchar[40]);
+  has 'attr2' => (is => 'rw', isa => TrimableVarchar[40], coerce => 1);
 
   package main;
-  my $obj = MyClass->new( attr1 => 'this must be under 40 chars' );
+  my $obj = MyClass->new(
+    attr1 => 'this must be under 40 chars',
+    attr2 => 'this will be trimmed to 40 chars',
+  );
 
 =head1 DESCRIPTION
 
