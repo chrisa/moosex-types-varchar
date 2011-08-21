@@ -1,6 +1,7 @@
+0.04   Sun Aug 21 2011 13:23:43 BST 
   * Change implementation to use MooseX::Types::Parameterizable
-  * Add a TrimableVarchar type which can be coerced (and will substr the
-    input value to reduce it to the required length.
+  * Add a TrimmableVarchar type which can be coerced (and will substr the
+    input value to reduce it to the required length. (t0m <bobtfish@bobtfish.net>)
 
 0.03   Fri 25 Jun 2010 17:36:52 BST
   * Note that you don't want this, you probably want MooseX::Types::Parameterizable.
