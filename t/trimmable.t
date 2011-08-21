@@ -4,10 +4,10 @@ use Test::More;
 {
     package MyClass;
     use Moose;
-    use MooseX::Types::Varchar qw/ TrimableVarchar /;
+    use MooseX::Types::Varchar qw/ TrimmableVarchar /;
 
-    has 'attr1' => (is => 'rw', required => 1, isa => TrimableVarchar[20]);
-    has 'attr2' => (is => 'rw', required => 1, isa => TrimableVarchar[20], coerce => 1);
+    has 'attr1' => (is => 'rw', required => 1, isa => TrimmableVarchar[20]);
+    has 'attr2' => (is => 'rw', required => 1, isa => TrimmableVarchar[20], coerce => 1);
     no Moose;
 }
 
