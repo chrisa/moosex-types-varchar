@@ -13,5 +13,5 @@ use Test::NoWarnings;
 }
 
 dies_ok {
-	my $obj = MyClass->new( attr1 => undef );
+        my $obj = MyClass->new( attr1 => undef );
 } 'undef is not valid';
