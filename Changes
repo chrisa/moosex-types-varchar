@@ -1,3 +1,6 @@
+0.05   Wed 28 Sep 2011 11:23:33 BST
+  * Ensure that warnings are not thrown when attributes are undef (Caleb Cushing <xenoterracide@gmail.com>)
+
 0.04   Sun Aug 21 2011 13:23:43 BST 
   * Change implementation to use MooseX::Types::Parameterizable
   * Add a TrimmableVarchar type which can be coerced (and will substr the
