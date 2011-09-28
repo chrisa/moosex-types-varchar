@@ -18,6 +18,11 @@ subtype Varchar,
       },
       message {
         my ($val, $constraining) = @_;
+
+        # for 5.8, probably switch to  $foo //= ''; if 5.10 is an option
+        $val          ||= defined $val          ? $val          : '';
+        $constraining ||= defined $constraining ? $constraining : '';
+
         qq{Validation failed for 'MooseX::Types::Varchar[$constraining]' with value "$val"};
       };
 
